@@ -52,6 +52,7 @@ class RoleReactions(commands.Cog, name="Role Reactions"):
                     await msg.add_reaction(e)
 
                 await self.bot.db_client.rolereactions.started(rr.id, msg.id)
+                self.bot.role_reactions = await self.bot.db_client.rolereactions.get_all()
             elif not rr.start_time and rr.message_id:
                 ch = self.bot.get_channel(rr.channel_id)
                 msg = await ch.fetch_message(rr.message_id)
@@ -59,6 +60,7 @@ class RoleReactions(commands.Cog, name="Role Reactions"):
                     await msg.delete()
 
                 await self.bot.db_client.rolereactions.stopped(rr.id)
+                self.bot.role_reactions = await self.bot.db_client.rolereactions.get_all()
 
     @role_reaction_updater.before_loop
     async def before_updater_start(self):
