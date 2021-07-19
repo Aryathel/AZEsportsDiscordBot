@@ -20,7 +20,7 @@ class Listeners(commands.Cog, name="Listeners"):
         await self.bot.db_client.guilds.update(guild)
         await self.bot.db_client.config.save_default(guild)
         await self.bot.db_client.channels.update_all(self.bot)
-        await self.bot.db_client.roles.update_byb_guild(guild)
+        await self.bot.db_client.roles.update_by_guild(guild)
 
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):
