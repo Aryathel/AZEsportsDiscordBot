@@ -1,10 +1,11 @@
 from aiomysql import DictCursor
+import pickle
 
 
 class User:
     def __init__(self, options):
         self.id = int(options.get('id'))
-        self.name = options.get('name')
+        self.name = pickle.loads(options.get('name'))
         self.discriminator = int(options.get('discriminator'))
         self.avatar_url = options.get('avatar')
 
@@ -17,7 +18,7 @@ class Users:
     async def update_all(self, users):
         user_list = []
         for user in users:
-            user_list.append((user.id, user.name, user.discriminator, str(user.avatar_url)))
+            user_list.append((user.id, pickle.dumps(user.name), user.discriminator, str(user.avatar_url)))
 
         delete = ()
         users_curr = await self.get_all()
@@ -50,7 +51,7 @@ class Users:
                     "INSERT INTO users (id, name, discriminator, avatar)"
                     "values (%s,%s,%s,%s) ON DUPLICATE KEY UPDATE "
                     "name=values(name),discriminator=values(discriminator),avatar=values(avatar)",
-                    (user.id, user.name, user.discriminator, str(user.avatar_url))
+                    (user.id, pickle.dumps(user.name), user.discriminator, str(user.avatar_url))
                 )
                 await conn.commit()
 
