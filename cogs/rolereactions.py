@@ -33,10 +33,8 @@ class RoleReactions(commands.Cog, name="Role Reactions"):
                 emojis = []
                 entries = []
                 for r in rr.reactions:
-                    r.emoji = pickle.loads(r.emoji)
                     if bool(r.iscustom):
                         emoji = self.bot.get_emoji(int(r.emoji))
-
                     else:
                         emoji = r.emoji
 
