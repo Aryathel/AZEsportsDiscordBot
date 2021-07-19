@@ -122,7 +122,8 @@ async def on_ready():
                 ts=True
             )
             log_channel = bot.get_channel(bot.configs[i].log_channel_id)
-            await log_channel.send(embed=embed)
+            if log_channel:
+                await log_channel.send(embed=embed)
 
 
 @bot.check
