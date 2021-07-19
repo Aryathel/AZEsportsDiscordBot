@@ -3,7 +3,7 @@
 TIMEOUT="5s"
 
 while : ; do
-    python main.py
+    pipenv run python3.9 main.py
     echo "Restarting in $TIMEOUT"
     sleep $TIMEOUT
 done
