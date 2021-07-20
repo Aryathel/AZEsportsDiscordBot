@@ -9,6 +9,7 @@ class Reaction:
         self.role_reaction = options.get('role_reaction')
         self.iscustom = options.get('iscustom')
         self.emoji = pickle.loads(options.get('emoji'))
+        print(self.emoji)
         self.role = options.get('role')
 
 

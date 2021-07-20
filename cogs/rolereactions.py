@@ -37,6 +37,7 @@ class RoleReactions(commands.Cog, name="Role Reactions"):
                         emoji = self.bot.get_emoji(int(r.emoji))
                     else:
                         emoji = r.emoji
+                        print(emoji)
 
                     role = channel.guild.get_role(int(r.role))
                     if emoji and role:

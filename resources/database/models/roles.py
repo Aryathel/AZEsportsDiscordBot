@@ -1,6 +1,7 @@
 from aiomysql import DictCursor
 from discord import Color
 
+
 class Role:
     def __init__(self, options):
         self.id = int(options.get('id'))
