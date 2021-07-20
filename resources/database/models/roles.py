@@ -50,7 +50,7 @@ class Roles:
                 await cur.execute(
                     "INSERT INTO roles (id, name, guild, color)"
                     "values (%s,%s,%s,%s) ON DUPLICATE KEY UPDATE "
-                    "guild=values(guild),name=values(name),type=values(type)",
+                    "guild=values(guild),name=values(name),color=values(color)",
                     (role.id, role.name, role.guild.id, role.color.value)
                 )
                 await conn.commit()
